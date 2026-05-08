@@ -1,0 +1,166 @@
+{% load static %}
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>UI Kit — Проект</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- 2. Навигация -->
+<nav class="navbar navbar-expand-lg mb-5">
+    <div class="container">
+        <a class="navbar-brand" href="#" style="color: var(--color-secondary)">VkusLab</a>
+        <div class="navbar-nav">
+            <a class="nav-link active" href="#">Главная</a>
+            <a class="nav-link" href="#">Заявки</a>
+            <a class="nav-link" href="#">Профиль</a>
+        </div>
+    </div>
+</nav>
+<div class="container pb-5">
+    <section class="mb-5">
+    <h3>Основные цвета палитры</h3>
+    <div class="row g-2">
+        <div class="col"><div class="p-3 rounded-4 text-white text-center" style="background: var(--color-secondary)">Secondary</div></div>
+        <div class="col"><div class="p-3 rounded-4 text-white text-center" style="background: var(--color-attention)">Attention</div></div>
+        <div class="col"><div class="p-3 rounded-4 text-white text-center" style="background: var(--color-positive)">Positive</div></div>
+        <div class="col"><div class="p-3 rounded-4 text-white text-center" style="background: var(--color-negative)">Negative</div></div>
+        <div class="col"><div class="p-3 rounded-4 text-center" style="background: var(--color-allocation)">Allocation</div></div>
+        <div class="col"><div class="p-3 rounded-4 text-center border" style="background: var(--background-base)">Base BG</div></div>
+    </div>
+</section>
+    <!-- 1. Типографика -->
+    <section class="mb-5">
+        <h1 class="display-4"> Типографика и цвета</h1>
+        <p>Основной шрифт: <b>Margarine</b>. Используется для всех элементов интерфейса.</p>
+    </section>
+
+    <!-- 3. Кнопки -->
+    <section class="mb-5">
+        <h3> Кнопки (Radius 45px)</h3>
+        <div class="custom-card">
+            <div class="mb-4">
+            <h6>Размеры:</h6>
+            <button class="btn btn-primary btn-lg">Большая кнопка</button>
+            <button class="btn btn-primary">Обычная кнопка</button>
+            <button class="btn btn-primary btn-sm">Маленькая</button>
+        </div>
+            <button class="btn btn-primary">Основная</button>
+            <button class="btn btn-secondary">Вторичная</button>
+            <button class="btn btn-danger">Опасность</button>
+            <button class="btn btn-primary" disabled>Неактивна</button>
+            <button class="btn btn-link">Кнопка-ссылка</button>
+        </div>
+    </section>
+<section class="mb-5">
+    <h3>1. Иерархия заголовков</h3>
+    <div class="custom-card">
+        <h1 style="font-size: var(--text-5xl); color: var(--color-secondary);">Заголовок H1 (5xl)</h1>
+        <h2 style="font-size: var(--text-4xl); color: var(--text-attention);">Заголовок H2 (4xl)</h2>
+        <h3 style="font-size: var(--text-3xl); color: var(--color-positive);">Заголовок H3 (3xl)</h3>
+        <p style="font-size: var(--text-base);">Обычный текст системы (Base)</p>
+        <p style="font-size: var(--text-xs);" class="text-muted">Служебный текст (Extra Small)</p>
+    </div>
+</section>
+    <!-- 4. Формы -->
+    <section class="mb-5">
+    <h3>4. Полный набор полей форм</h3>
+    <div class="custom-card">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label>Поле ввода текста</label>
+                <input type="text" class="form-control" placeholder="Имя">
+            </div>
+            <div class="col-md-4">
+                <label>Поле пароля</label>
+                <input type="password" class="form-control" value="password123">
+            </div>
+            <div class="col-md-4">
+                <label>Поле Email</label>
+                <input type="email" class="form-control" placeholder="test@mail.ru">
+            </div>
+            <div class="col-md-4">
+                <label>Неактивное поле (Readonly)</label>
+                <input type="text" class="form-control" disabled value="Меня нельзя менять" readonly style="background-color: var(--bg-surface-alt);">
+            </div>
+            <div class="col-md-4">
+                <label>Телефон</label>
+                <input type="tel" class="form-control" placeholder="+7 (999) 000-00-00">
+            </div>
+            <div class="col-md-4">
+                <label>Дата</label>
+                <input type="date" class="form-control">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 5 & 6. Карточки и Статусы -->
+    <section class="mb-5">
+        <h3> Инфо-блоки и Статусы</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="custom-card">
+                    <div class="badge-custom st-new mb-3">НОВАЯ</div>
+                    <h5>Заявка #001</h5>
+                    <p class="small">Пример отображения объекта системы (услуга/курс).</p>
+                    <button class="btn btn-primary btn-sm w-100">Открыть</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-card">
+                    <div class="badge-custom st-process mb-3">В ОБРАБОТКЕ</div>
+                    <h5>Заявка #002</h5>
+                    <p class="small">Все блоки имеют скругление 30px и легкую тень.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-card">
+                    <div class="badge-custom st-done mb-3">ЗАВЕРШЕНО</div>
+                    <h5>Заявка #003</h5>
+                    <p class="small">Цвета статусов привязаны к переменным :root.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Таблицы и Админка -->
+    <section class="mb-5">
+        <h3> Таблицы и фильтры</h3>
+        <div class="table-container">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Тестовый объект</td>
+                        <td><span class="badge-custom st-done">Ок</span></td>
+                        <td><button class="btn btn-secondary btn-sm">Изм.</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+</body>
+</html>
