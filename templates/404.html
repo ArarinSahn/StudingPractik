@@ -1,0 +1,108 @@
+{% extends "base_sample.html" %}
+{% load static %}
+
+{% block title %}404 - Упс... Ничего нет{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-box">
+
+        <div class="error-404">404</div>
+
+        <div class="meme-text">
+            ╰(°▽°)╯ ЭТОЙ СТРАНИЦЫ НЕ СУЩЕСТВУЕТ ╰(°▽°)╯
+        </div>
+
+        <div class="path-info">
+            Запрашиваемый путь: {{ request_path }}
+        </div>
+
+        <div class="meme-img">
+            ( ͡° ͜ʖ ͡°)
+        </div>
+
+        <a href="/" class="error-btn">🏠 ВЕРНУТЬСЯ НА ГЛАВНУЮ</a>
+
+        <div class="small-text">
+            *на самом деле её правда нет*
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .error-container {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .error-box {
+        background: white;
+        border-radius: 60px;
+        padding: 50px 50px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        text-align: center;
+        max-width: 550px;
+        width: 100%;
+    }
+
+    .error-404 {
+        font-size: 100px;
+        font-weight: bold;
+        color: #FF4A2E;
+        margin-bottom: 20px;
+        letter-spacing: 10px;
+    }
+
+    .meme-text {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 25px;
+        background: #f0f0f0;
+        padding: 15px;
+        border-radius: 50px;
+    }
+
+    .path-info {
+        background: #1D69C0;
+        color: white;
+        border-radius: 30px;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        font-family: monospace;
+        font-size: 14px;
+        word-break: break-all;
+    }
+
+    .meme-img {
+        font-size: 40px;
+        margin-bottom: 25px;
+    }
+
+    .error-btn {
+        display: inline-block;
+        background: #1D69C0;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s;
+        margin-bottom: 15px;
+    }
+
+    .error-btn:hover {
+        background: #155a9e;
+        transform: scale(1.05);
+    }
+
+    .small-text {
+        font-size: 12px;
+        color: #999;
+    }
+</style>
+{% endblock %}

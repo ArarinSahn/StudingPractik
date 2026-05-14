@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_sample.html" %}
+{% load static %}
+{% block title %}Регистрация{% endblock %}
 
-</body>
-</html>
+
+{% block content %}
+<H1>Регистрация</H1>
+<form method="post" action="{% url 'registration' %}">
+    {% csrf_token %}
+    {% for field in form %}
+
+    <div class="auth-field">
+        <label for="id_password">{{ field.label_tag }}</label>
+        {{ field }}
+    </div>
+    {% if field.errors %}
+    <div class="alert-danger">
+        {{ field.errors }}
+    </div>
+    {% endif %}
+{% endfor %}
+
+    <button type="submit" class="auth-btn">Зарегистрироваться</button>
+</form>
+{% endblock %}

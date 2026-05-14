@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_sample.html" %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
 
-</body>
-</html>
+
+
+{% block content %}<H1>Страница заявок</H1>
+
+<a  href="{% url 'create_application' %}"  class="auth-btn">Создать заявку</a>
+
+{% endblock %}

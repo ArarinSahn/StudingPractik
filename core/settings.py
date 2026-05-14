@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-87xu-g8*y_*v2@5*sqp&0!pivfpiqfv(s8ic_lo$7x(od7@z6%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp'
+    'myapp',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static/']
+
+LOGIN_REDIRECT_URL = 'main_page'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
