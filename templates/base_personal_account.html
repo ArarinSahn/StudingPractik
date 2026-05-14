@@ -2,10 +2,55 @@
 {% load static %}
 {% block title %}Личный кабинет{% endblock %}
 
+{% block content %}
+<h1>Страница заявок</h1>
+
+<a href="{% url 'create_application' %}" class="auth-btn">Создать заявку</a>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+{% for item in applications %}
+<div class="col">
+    <!-- Добавлен класс position-relative для корректного позиционирования статуса -->
+    <div class="card h-100 position-relative">
+
+<div class="position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill text-center fw-bold text-white shadow-sm"
+     style="font-size: 0.85rem; z-index: 2;
+            {% if item.id_ststus.pk == 1 %}background-color: #ffc107;
+            {% elif item.id_ststus.pk == 2 %}background-color: #0d6efd;
+            {% elif item.id_ststus.pk == 4 %}background-color: #198754;
+            {% else %}background-color: #dc3545;{% endif %}">
+    {{ item.id_ststus.name }}
+</div>
 
 
-{% block content %}<H1>Страница заявок</H1>
+      <img src="{{ item.id_con_event.id_event.picture.url }}" class="card-img-top" alt="...">
 
-<a  href="{% url 'create_application' %}"  class="auth-btn">Создать заявку</a>
-
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ item.id_con_event.id_event.name }}</h5>
+        <p class="card-text">Описание: {{ item.id_con_event.id_event.description | safe }}</p>
+        <p class="card-text">Цена: {{ item.id_con_event.id_event.price }} руб.</p>
+        <p class="card-text">Кол-во человек: {{ item.quantity_sit }} </p>
+        <p class="card-text fw-bold text-success mb-3 mt-auto fs-5">Итоговая цена: {{ item.total_price }} руб.</p>
+          <p class="card-text fw-bold text-success mb-3 mt-auto fs-5">Способ оплаты: {{ item.id_pay }} </p>
+        <p class="card-text">
+            <strong>Дата и время проведения:</strong>
+            {{ item.id_con_event.date_con|date:"d.m.Y - H:i" }}
+        </p>
+          {% if item.id_ststus.pk == 4 %}
+          <form action="{% url 'send_review' item.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <label class="form-label fw-bold small text-secondary">Оставьте свой отзыв:</label>
+                    <textarea name="review_text" class="form-control form-control-sm" rows="3" placeholder="Поделитесь впечатлениями..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm w-100 rounded-pill shadow-sm">
+                    Отправить отзыв
+                </button>
+            </form>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
 {% endblock %}

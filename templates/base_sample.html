@@ -23,7 +23,7 @@
         <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary">Главная</a></li>
         {% if user.is_authenticated %}
             {% if user.is_superuser %}
-                <li><a href="{% url 'personal_account' %}" class="nav-link px-2">Панель администратора</a></li>
+                <li><a href="{% url 'base_admin' %}" class="nav-link px-2">Панель администратора</a></li>
             {% else %}
                 <li><a href="{% url 'personal_account' %}" class="nav-link px-2">Личный кабинет</a></li>
             {% endif %}

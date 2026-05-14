@@ -6,10 +6,10 @@ class Application(models.Model):
     id_con_event = models.ForeignKey('DateConductEvent', models.DO_NOTHING, db_column='id_con_event',verbose_name='Мероприятие')
     quantity_sit = models.IntegerField(verbose_name='Количесвто участников')
     id_pay = models.ForeignKey('PayMethod', models.DO_NOTHING, db_column='id_pay', verbose_name='Способ оплаты')
-    id_ststus = models.ForeignKey('Status', models.DO_NOTHING, db_column='id_ststus')
+    id_ststus = models.ForeignKey('Status', models.DO_NOTHING, db_column='id_ststus', default=1)
     id_user = models.ForeignKey('Users', models.DO_NOTHING, db_column='id_user')
     review = models.TextField(blank=True, null=True)
-    date_create = models.DateTimeField(blank=True, null=True)
+    date_create = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.id_con_event.name

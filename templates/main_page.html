@@ -2,26 +2,66 @@
 {% load static %}
 {% block title %}Главная{% endblock %}
 
-
-
 {% block content %}
-<H1>Каталог мероприятий</H1>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <a href="#" class="btn btn-primary">Подробнее</a>
-      </div>
+<h1 class="mb-4">Все доступные мероприятия</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    {% for item in events %}
+    <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+            {% if item.picture %}
+                <img src="{{ item.picture.url }}" class="card-img-top" alt="{{ item.name }}">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ item.name }}</h5>
+                <div class="card-text mb-3">Описание: {{ item.description | safe }}</div>
+                <p class="card-text text-primary fw-bold fs-5">Цена: {{ item.price }} руб.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 pt-0">
+                <a href="{% url 'create_application' %}" class="btn btn-primary w-100 rounded-pill">Записаться</a>
+            </div>
+        </div>
     </div>
-  </div>
+    {% endfor %}
 </div>
 
+<!-- БЛОК ИНТЕГРАЦИИ: Прокручивающиеся отзывы из всех заявок -->
+<div class="container my-5 pt-4 border-top">
+    <h2 class="text-center fw-bold mb-4">Что говорят наши участники</h2>
 
+    <div id="reviewsCarousel" class="carousel slide bg-light p-4 rounded-4 shadow-sm" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            {% for item in completed_applications %}
+                <!-- Класс active добавляется только самому первому элементу в цикле -->
+                <div class="carousel-item {% if forloop.first %}active{% endif %} text-center py-3">
 
+                    <p class="fs-5 fst-italic mx-auto text-dark px-md-5" style="max-width: 800px;">
+                        {% if item.review_text %}
+                            "{{ item.review_text }}"
+                        {% else %}
+                            "Отличная организация! Мероприятие прошло успешно."
+                        {% endif %}
+                    </p>
 
+                    <h6 class="fw-bold text-primary mt-3 mb-1">{{ item.id_user.login }}</h6>
+                    <small class="text-muted">Посетил(а) мероприятие: <strong class="text-dark">{{ item.id_con_event.id_event.name }}</strong></small>
 
+                </div>
+            {% empty %}
+                <div class="carousel-item active text-center py-3">
+                    <p class="text-muted fst-italic">Заявок и отзывов пока нет. Станьте первым участником!</p>
+                </div>
+            {% endfor %}
+        </div>
 
+        <!-- Кнопки управления слайдером (стрелочки влево/вправо) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
 {% endblock %}
