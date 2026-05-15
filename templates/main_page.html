@@ -13,55 +13,32 @@
                 <img src="{{ item.picture.url }}" class="card-img-top" alt="{{ item.name }}">
             {% endif %}
 
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">{{ item.name }}</h5>
                 <div class="card-text mb-3">Описание: {{ item.description | safe }}</div>
-                <p class="card-text text-primary fw-bold fs-5">Цена: {{ item.price }} руб.</p>
+                <p class="card-text text-primary fw-bold fs-5 mb-3">Цена: {{ item.price }} руб.</p>
+
+                <div class="reviews-section mt-auto pt-2 border-top">
+                    <h6 class="fw-bold text-muted small mb-2">Отзывы о мероприятии:</h6>
+
+                    <div style="max-height: 150px; overflow-y: auto; padding-right: 4px;">
+                        {% for comment in item.reviews_list %}
+                            <div class="p-2 mb-2 bg-light rounded small">
+                                <strong class="text-primary">{{ comment.id_aplic.id_user.login }}:</strong>
+                                <span class="fst-italic">"{{ comment.review }}"</span>
+                            </div>
+                        {% empty %}
+                            <p class="text-muted small fst-italic mb-0">Отзывов пока нет.</p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
+
             <div class="card-footer bg-transparent border-top-0 pt-0">
                 <a href="{% url 'create_application' %}" class="btn btn-primary w-100 rounded-pill">Записаться</a>
             </div>
         </div>
     </div>
     {% endfor %}
-</div>
-
-
-<div class="container my-5 pt-4 border-top">
-    <h2 class="text-center fw-bold mb-4">Что говорят наши участники</h2>
-
-    <div id="reviewsCarousel" class="carousel slide bg-light p-4 rounded-4 shadow-sm" data-bs-ride="carousel" data-bs-interval="5000">
-        <div class="carousel-inner">
-            {% for item in completed_applications %}
-
-                <div class="carousel-item {% if forloop.first %}active{% endif %} text-center py-3">
-
-                    <p class="fs-5 fst-italic mx-auto text-dark px-md-5" style="max-width: 800px;">
-                        {% if item.review_text %}
-                            "{{ item.review_text }}"
-                        {% else %}
-                            "Отличная организация! Мероприятие прошло успешно."
-                        {% endif %}
-                    </p>
-
-                    <h6 class="fw-bold text-primary mt-3 mb-1">{{ item.id_user.login }}</h6>
-                    <small class="text-muted">Посетил(а) мероприятие: <strong class="text-dark">{{ item.id_con_event.id_event.name }}</strong></small>
-
-                </div>
-            {% empty %}
-                <div class="carousel-item active text-center py-3">
-                    <p class="text-muted fst-italic">Заявок и отзывов пока нет. Станьте первым участником!</p>
-                </div>
-            {% endfor %}
-        </div>
-
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        </button>
-    </div>
 </div>
 {% endblock %}

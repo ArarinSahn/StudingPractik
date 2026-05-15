@@ -14,7 +14,7 @@ class Application(models.Model):
         return self.id_con_event.name
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'Application'
         unique_together = (('id_user', 'id_con_event'),)
 
@@ -98,10 +98,14 @@ class Status(models.Model):
     class Meta:
         managed = False
         db_table = 'status'
-# Create your models here.
+
 class Revie(models.Model):
-    id_revie = models.IntegerField(primary_key=True)
+    id_revie = models.AutoField(primary_key=True)
     id_aplic = models.ForeignKey('Application', models.DO_NOTHING, db_column='id_aplic')
     review = models.TextField(blank=True, null=True)
     def __str__(self):
-        return self.name
+        return self.review
+
+    class Meta:
+        managed = True
+        db_table = 'review'

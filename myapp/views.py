@@ -5,16 +5,27 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from myapp.forms import RegisterForm, ApplicationCreateForm
-from myapp.models import Users, Roles, Event, Application
+from myapp.models import Users, Roles, Event, Application, Revie
 
 
 def uikit(request):
     return render(request, 'uikit.html')
 # Create your views here.
+
+
+
 def main_page(request):
     events = Event.objects.all()
-    context = {'events': events}
+    for event in events:
+        event.reviews_list = Revie.objects.filter(
+            id_aplic__id_con_event__id_event=event
+        ).select_related('id_aplic__id_user')
+        context = {'events': events}
     return render(request, 'main_page.html', context)
+
+
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -85,10 +96,12 @@ def chang_status(request,id_aplic,id_ststus):
 def send_review(request,app_id):
     if request.method == "POST":
         application = get_object_or_404(Application, pk=app_id)
-        comment = request.POST.get('user_comment', '').strip()
+        comment = request.POST.get('review_text', '').strip()
     if comment:
-        application.review = comment
-        application.save()
+        Revie.objects.create(
+            id_aplic=application,
+            review=comment
+        )
     return redirect('personal_account')
 
 

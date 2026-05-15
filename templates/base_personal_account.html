@@ -36,16 +36,24 @@
             {{ item.id_con_event.date_con|date:"d.m.Y - H:i" }}
         </p>
           {% if item.id_ststus.pk == 4 %}
-          <form action="{% url 'send_review' item.pk %}" method="POST">
-                {% csrf_token %}
-                <div class="mb-2">
-                    <label class="form-label fw-bold small text-secondary">Оставьте свой отзыв:</label>
-                    <textarea name="review_text" class="form-control form-control-sm" rows="3" placeholder="Поделитесь впечатлениями..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-success btn-sm w-100 rounded-pill shadow-sm">
-                    Отправить отзыв
-                </button>
-            </form>
+
+              {% if item.revie_set.exists %}
+                  <div class="alert alert-success py-2 px-3 small rounded-3 mb-0">
+                      <i class="bi bi-check-circle-fill me-1"></i> Отзыв успешно отправлен!
+                  </div>
+              {% else %}
+
+                  <form action="{% url 'send_review' item.pk %}" method="POST" class="mt-2">
+                      {% csrf_token %}
+                      <div class="mb-2">
+                          <label class="form-label fw-bold small text-secondary mb-1">Оставьте свой отзыв:</label>
+                          <textarea name="review_text" class="form-control form-control-sm" rows="3" placeholder="Поделитесь впечатлениями..." required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success btn-sm w-100 rounded-pill shadow-sm">
+                          Отправить отзыв
+                      </button>
+                  </form>
+              {% endif %}
           {% endif %}
       </div>
     </div>
