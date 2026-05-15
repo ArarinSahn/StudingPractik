@@ -26,14 +26,14 @@
     {% endfor %}
 </div>
 
-<!-- БЛОК ИНТЕГРАЦИИ: Прокручивающиеся отзывы из всех заявок -->
+
 <div class="container my-5 pt-4 border-top">
     <h2 class="text-center fw-bold mb-4">Что говорят наши участники</h2>
 
     <div id="reviewsCarousel" class="carousel slide bg-light p-4 rounded-4 shadow-sm" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
             {% for item in completed_applications %}
-                <!-- Класс active добавляется только самому первому элементу в цикле -->
+
                 <div class="carousel-item {% if forloop.first %}active{% endif %} text-center py-3">
 
                     <p class="fs-5 fst-italic mx-auto text-dark px-md-5" style="max-width: 800px;">
@@ -55,7 +55,7 @@
             {% endfor %}
         </div>
 
-        <!-- Кнопки управления слайдером (стрелочки влево/вправо) -->
+
         <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
         </button>

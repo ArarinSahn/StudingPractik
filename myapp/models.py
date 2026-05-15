@@ -8,7 +8,6 @@ class Application(models.Model):
     id_pay = models.ForeignKey('PayMethod', models.DO_NOTHING, db_column='id_pay', verbose_name='Способ оплаты')
     id_ststus = models.ForeignKey('Status', models.DO_NOTHING, db_column='id_ststus', default=1)
     id_user = models.ForeignKey('Users', models.DO_NOTHING, db_column='id_user')
-    review = models.TextField(blank=True, null=True)
     date_create = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -100,3 +99,9 @@ class Status(models.Model):
         managed = False
         db_table = 'status'
 # Create your models here.
+class Revie(models.Model):
+    id_revie = models.IntegerField(primary_key=True)
+    id_aplic = models.ForeignKey('Application', models.DO_NOTHING, db_column='id_aplic')
+    review = models.TextField(blank=True, null=True)
+    def __str__(self):
+        return self.name
