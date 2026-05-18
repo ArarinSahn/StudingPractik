@@ -2,31 +2,60 @@
 {% load static %}
 {% block title %}Создание заявки{% endblock %}
 
-
-
 {% block content %}
-<H1>Создание заявок</H1>
+<h1>Создание заявок</h1>
 <div class="auth-page">
     <div class="auth-oval">
-        <H1 xmlns="http://www.w3.org/1999/html" class="auth-title">Создание заявки</H1>
+        <h1 class="auth-title">Создание заявки</h1>
+
         {% if form.errors %}
         <div class="auth-error">
             <i class="bi bi-exclamation-triangle-fill"></i>
-            <span>Ваш логин и пароль не совпадают. Попробуйте снова!</span>
+            <span>Ошибка, проверьте введенные данные</span>
         </div>
         {% endif %}
-        <form method="post" action="{% url 'create_application' %}">
+
+        <form method="post" action="">
             {% csrf_token %}
-            {% for field in form %}
-           <div class="auth-field">
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.errors %}
-                <span class="auth-error-text">{{ field.errors }}</span>
-            {% endif %}
-        </div>
-    {% endfor %}
-            <button type="submit" class="auth-btn">Создать</button>
+
+            <!-- 1. Вывод доступных сеансов -->
+            <div class="auth-field">
+                <label class="form-label"><strong>{{ form.id_con_event.label }}</strong></label>
+
+                <div class="slots-grid-fixed" style="margin-top: 10px; margin-bottom: 20px;">
+                    {{ form.id_con_event }}
+                </div>
+
+                {% if form.id_con_event.errors %}
+                    <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em; margin-bottom: 15px;">
+                        Пожалуйста, выберите один из сеансов!
+                    </span>
+                {% endif %}
+            </div>
+
+            <!-- 2. Количество участников -->
+            <div class="auth-field" style="margin-bottom: 15px;">
+    {{ form.quantity_sit.label_tag }}
+    {{ form.quantity_sit }}
+    {% if form.quantity_sit.errors %}
+        <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em;">
+            {{ form.quantity_sit.errors|striptags }}
+        </span>
+    {% endif %}
+</div>
+
+            <!-- 3. Способ оплаты -->
+            <div class="auth-field" style="margin-bottom: 25px;">
+                {{ form.id_pay.label_tag }}
+                {{ form.id_pay }}
+                {% if form.id_pay.errors %}
+                    <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em;">
+                        {{ form.id_pay.errors|striptags }}
+                    </span>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="auth-btn">Создать заявку</button>
         </form>
     </div>
 </div>

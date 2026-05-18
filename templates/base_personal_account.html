@@ -5,7 +5,7 @@
 {% block content %}
 <h1>Страница заявок</h1>
 
-<a href="{% url 'create_application' %}" class="auth-btn">Создать заявку</a>
+<a href="{% url 'main_page' %}" class="auth-btn">Создать заявку</a>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
 {% for item in applications %}

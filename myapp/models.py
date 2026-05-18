@@ -1,5 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils import timezone
+from django.db.models import Sum
 
 class Application(models.Model):
     id_aplic = models.AutoField(primary_key=True)
@@ -25,7 +27,17 @@ class DateConductEvent(models.Model):
     date_con = models.DateTimeField()
     max_member = models.IntegerField()
 
+
+    @property
+    def remaining_places(self):
+
+        from .models import Application
+        taken_places = Application.objects.filter(id_con_event=self).aggregate(Sum('quantity_sit'))['quantity_sit__sum'] or 0
+        left = self.max_member - taken_places
+        return max(0, left)
+
     def __str__(self):
+        local_date = timezone.localtime(self.date_con)
         formatted_date = self.date_con.strftime("%d.%m.%Y %H:%M")
         return f"{self.id_event.name} — {formatted_date}, мест {self.max_member}"
 
