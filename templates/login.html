@@ -1,31 +1,59 @@
 {% extends "base_sample.html" %}
 {% load static %}
 {% block title %}Авторизация{% endblock %}
+
 {% block content %}
-<div class="auth-page">
-    <div class="auth-oval">
-        <H1 xmlns="http://www.w3.org/1999/html" class="auth-title">Авторизация</H1>
-        {% if form.errors %}
-        <div class="auth-error">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <span>Ваш логин и пароль не совпадают. Попробуйте снова!</span>
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold mb-2">Авторизация</h1>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+            <div style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; padding: 35px;">
+
+                {% if form.errors %}
+                <div style="background: rgba(255, 74, 46, 0.1); border: 1px solid #FF4A2E; padding: 12px 20px; border-radius: 30px; margin-bottom: 25px; text-align: center;">
+                    <i class="bi bi-exclamation-triangle-fill" style="color: #FF4A2E; margin-right: 8px;"></i>
+                    <span style="color: #FF4A2E; font-weight: 500;">Ваш логин и пароль не совпадают. Попробуйте снова!</span>
+                </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="id_username"
+                               style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;">
+                            Логин
+                        </label>
+                        <input type="text" name="username" id="id_username"
+                               class="form-control" autofocus required
+                               style="border-radius: 30px; border: 1px solid #796666; padding: 12px 20px; width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label for="id_password"
+                               style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;">
+                            Пароль
+                        </label>
+                        <input type="password" name="password" id="id_password"
+                               class="form-control" autocomplete="current-password" required
+                               style="border-radius: 30px; border: 1px solid #796666; padding: 12px 20px; width: 100%;">
+                    </div>
+
+                    <button type="submit" class="auth-btn" style="width: 100%; padding: 14px; font-size: 1rem;">
+                        Войти
+                    </button>
+                </form>
+
+                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0d5c8;">
+                    <span style="color: #928D88;">Нет аккаунта?</span>
+                    <a href="{% url 'registration' %}"
+                       style="color: #1D69C0; text-decoration: none; font-weight: bold; margin-left: 5px;">Зарегистрироваться</a>
+                </div>
+            </div>
         </div>
-        {% endif %}
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="auth-field">
-                <label for="id_username">Логин</label>
-                <input type="text" name="username" class="form-control" required id="id_username" autofocus>
-            </div>
-            <div class="auth-field">
-                <label for="id_password">Пароль</label>
-                <input type="password" name="password" class="form-control" autocomplete="current-password" required
-                       id="id_password">
-            </div>
-            <button type="submit" class="auth-btn">Войти</button>
-        </form>
     </div>
 </div>
 {% endblock %}
-
-

@@ -3,61 +3,116 @@
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-<h1>Страница заявок</h1>
+<div class="container py-4">
 
-<a href="{% url 'main_page' %}" class="auth-btn">Создать заявку</a>
-
-<div class="row row-cols-1 row-cols-md-2 g-4">
-{% for item in applications %}
-<div class="col">
-    <div class="card h-100 position-relative">
-
-<div class="position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill text-center fw-bold text-white shadow-sm"
-     style="font-size: 0.85rem; z-index: 2;
-            {% if item.id_ststus.pk == 1 %}background-color: #ffc107;
-            {% elif item.id_ststus.pk == 2 %}background-color: #0d6efd;
-            {% elif item.id_ststus.pk == 4 %}background-color: #198754;
-            {% else %}background-color: #dc3545;{% endif %}">
-    {{ item.id_ststus.name }}
-</div>
-
-
-      <img src="{{ item.id_con_event.id_event.picture.url }}" class="card-img-top" alt="...">
-
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ item.id_con_event.id_event.name }}</h5>
-        <p class="card-text">Описание: {{ item.id_con_event.id_event.description | safe }}</p>
-        <p class="card-text">Цена: {{ item.id_con_event.id_event.price }} руб.</p>
-        <p class="card-text">Кол-во человек: {{ item.quantity_sit }} </p>
-        <p class="card-text fw-bold text-success mb-3 mt-auto fs-5">Итоговая цена: {{ item.total_price }} руб.</p>
-          <p class="card-text fw-bold text-success mb-3 mt-auto fs-5">Способ оплаты: {{ item.id_pay }} </p>
-        <p class="card-text">
-            <strong>Дата и время проведения:</strong>
-            {{ item.id_con_event.date_con|date:"d.m.Y - H:i" }}
-        </p>
-          {% if item.id_ststus.pk == 4 %}
-
-              {% if item.revie_set.exists %}
-                  <div class="alert alert-success py-2 px-3 small rounded-3 mb-0">
-                      <i class="bi bi-check-circle-fill me-1"></i> Отзыв успешно отправлен!
-                  </div>
-              {% else %}
-
-                  <form action="{% url 'send_review' item.pk %}" method="POST" class="mt-2">
-                      {% csrf_token %}
-                      <div class="mb-2">
-                          <label class="form-label fw-bold small text-secondary mb-1">Оставьте свой отзыв:</label>
-                          <textarea name="review_text" class="form-control form-control-sm" rows="3" placeholder="Поделитесь впечатлениями..." required></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-success btn-sm w-100 rounded-pill shadow-sm">
-                          Отправить отзыв
-                      </button>
-                  </form>
-              {% endif %}
-          {% endif %}
-      </div>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Мои заявки</h1>
+        </div>
+        <div class="mt-3 mt-md-0">
+            <a href="{% url 'main_page' %}" class="auth-btn text-decoration-none">Создать заявку</a>
+        </div>
     </div>
-  </div>
-{% endfor %}
+
+
+    <div class="custom-card d-flex justify-content-between align-items-center mb-4"
+         style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; padding: 12px 20px;">
+        <span><strong>Всего заявок:</strong> {{ applications.count }}</span>
+        <span class="text-muted small">Статус обновляется администратором</span>
+    </div>
+
+
+    {% if applications %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        {% for item in applications %}
+        <div class="col">
+            <div style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+
+
+                <div style="position: relative;">
+                    {% if item.id_con_event.id_event.picture %}
+                    <img src="{{ item.id_con_event.id_event.picture.url }}" alt="{{ item.id_con_event.id_event.name }}"
+                         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+                    {% else %}
+                    <div style="width: 100%; height: 200px; background: #fbefdb; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 48px;">🍳</span>
+                    </div>
+                    {% endif %}
+
+
+                    <span style="position: absolute; top: 12px; right: 12px; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                        {% if item.id_ststus.pk == 1 %}background-color: #C675CA;
+                        {% elif item.id_ststus.pk == 2 %}background-color: #EB8A15;
+                        {% elif item.id_ststus.pk == 4 %}background-color: #46A532;
+                        {% else %}background-color: #FF4A2E;{% endif %}">
+                        {{ item.id_ststus.name }}
+                    </span>
+                </div>
+
+                <div style="padding: 15px; flex: 1; display: flex; flex-direction: column;">
+                    <h5 style="font-weight: bold; margin-bottom: 8px;">{{ item.id_con_event.id_event.name }}</h5>
+
+                    <p style="font-size: 0.85rem; color: #928D88; margin-bottom: 12px;">
+                        {{ item.id_con_event.id_event.description|striptags|truncatechars:80 }}
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                        <div>
+                            <div style="font-size: 0.7rem; color: #928D88;">Кол-во участников</div>
+                            <div style="font-weight: 600;">{{ item.quantity_sit }}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.7rem; color: #928D88;">Цена за человека</div>
+                            <div style="font-weight: 600;">{{ item.id_con_event.id_event.price }} руб.</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 8px;">
+                        <div style="font-size: 0.7rem; color: #928D88;">Способ оплаты</div>
+                        <div style="font-weight: 600;">{{ item.id_pay }}</div>
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 0.7rem; color: #928D88;">Дата и время</div>
+                        <div style="font-weight: 600;">{{ item.id_con_event.date_con|date:"d.m.Y - H:i" }}</div>
+                    </div>
+
+                    <div style="padding-top: 12px; border-top: 1px solid #cbb5a8; font-weight: bold; color: #46A532; margin-top: auto;">
+                        Итоговая цена: {{ item.total_price }} руб.
+                    </div>
+
+                    {% if item.id_ststus.pk == 4 %}
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbb5a8;">
+                        {% if item.revie_set.exists %}
+                        <div style="background: rgba(70,165,50,0.1); border: 1px solid #46A532; padding: 8px; border-radius: 10px; font-size: 0.8rem; text-align: center; color: #46A532;">
+                            Отзыв отправлен
+                        </div>
+                        {% else %}
+                        <form action="{% url 'send_review' item.pk %}" method="POST">
+                            {% csrf_token %}
+                            <textarea name="review_text"
+                                      style="width: 100%; border-radius: 10px; border: 1px solid #796666; padding: 8px 12px; margin-bottom: 8px; font-family: inherit;"
+                                      rows="2" placeholder="Оставьте отзыв..." required></textarea>
+                            <button type="submit"
+                                    style="background: #1D69C0; color: white; border: none; padding: 8px 16px; border-radius: 30px; cursor: pointer; width: 100%; font-family: inherit;">
+                                Отправить отзыв
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; text-align: center; padding: 60px 20px;">
+        <div style="font-size: 48px; margin-bottom: 15px;">🍳</div>
+        <h3 style="margin-bottom: 8px;">У вас пока нет заявок</h3>
+        <p style="color: #928D88; margin-bottom: 16px;">Запишитесь на первое мероприятие</p>
+        <a href="{% url 'main_page' %}" class="auth-btn text-decoration-none d-inline-block">Создать заявку</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

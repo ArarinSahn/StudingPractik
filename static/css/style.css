@@ -8,7 +8,7 @@
     --color-negative: #FF4A2E;
     --color-neutral: #928D88;
     --color-allocation: #C675CA;
-    --background-base: #fdf5e6;
+    --background-base: #fff6e3;
     --text-main: #333333;
     --form-border-color: #796666;
     --bg-surface: #ffffff;
@@ -25,7 +25,7 @@
 }
 
 <!--
-/* 1. БАЗОВЫЕ СТИЛИ
+/*
 body {
     background-color: var(--background-base);
     font-family: var(--font-family);
@@ -33,38 +33,38 @@ body {
     line-height: 1.6;
 }
 
- 2. НАВИГАЦИЯ
+
 .navbar { background: var(--bg-surface) !important; border-radius: 0 0 20px 20px; box-shadow: var(--shadow-bottom); }
 .nav-link { color: var(--text-main) !important; margin-right: 15px; }
 .nav-link.active { color: var(--color-secondary) !important; font-weight: bold; }
 
- 3. КНОПКИ
+
 .btn {
     border-radius: var(--radius-button) !important;
     padding: 10px 25px;
-    transition: all 0.2s ease-in-out;  Чтобы плавно менялось
+    transition: all 0.2s ease-in-out;
     border: none !important;
-    cursor: pointer;  Чтобы палец появлялся
+    cursor: pointer;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
     user-select: none;
 }
 
- Эффект при наведении (осветляем)
+
 .btn:hover {
     opacity: 0.9;
-    transform: translateY(-1px);  Чуть приподнимается
+    transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15)
 }
 
- Эффект при самом нажатии (жмяк!)
+
 .btn:active {
-    transform: scale(0.96) !important;  Кнопка физически сжимается
+    transform: scale(0.96) !important;
     box-shadow: inset 0 3px 5px rgba(0,0,0,0.2) !important;
 }
 
- Цвета для кнопок
+
 .btn-primary {
     background-color: var(--color-secondary) !important;
     color: white !important;
@@ -78,11 +78,11 @@ body {
     color: white !important;
 }
 
-Чтобы кнопки-ссылки тоже выглядели живыми
+
 .btn-link:active {
     color: var(--color-secondary-dark) !important;
 }
- 4. ФОРМЫ
+
 .form-control, .form-select {
     border-radius: var(--radius-input) !important;
     border: 1px solid var(--form-border-color) !important;
@@ -90,7 +90,7 @@ body {
     margin-bottom: 15px;
 }
 
- 5. ИНФО-БЛОКИ (КАРТОЧКИ)
+
 .custom-card {
     background: var(--bg-surface);
     border-radius: var(--radius-card);
@@ -100,7 +100,7 @@ body {
     height: 100%;
 }
 
- 6. СТАТУСЫ
+
 .badge-custom {
     padding: 8px 16px;
     border-radius: 12px;
@@ -112,10 +112,10 @@ body {
 .st-process { background: var(--color-attention); }
 .st-done { background: var(--color-positive); }
 .st-error { background: var(--color-negative); }
- 7. ТАБЛИЦЫ */
+ */
 .table-container { background: white; border-radius: 20px; overflow: hidden; padding: 10px; }
 .table thead { background: var(--color-secondary); color: white; }
--->
+
 body {
     background-color: var(--background-base);
     font-family: var(--font-family);
@@ -220,3 +220,51 @@ body {
     font-weight: 500;
     margin-top: 4px;
 }
+
+.card-img-custom {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-img-placeholder {
+    width: 100%;
+    height: 200px;
+    background: var(--oval-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.z-index-10 {
+    z-index: 10;
+}
+
+.btn-create-sm {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+.custom-card,
+.card,
+[class*="card"] {
+    background-color: #ffffff !important;
+}
+.badge-custom {
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: white;
+    display: inline-block;
+}
+.st-new { background: var(--color-allocation); }
+.st-process { background: var(--color-attention); }
+.st-done { background: var(--color-positive); }
+.st-error { background: var(--color-negative); }

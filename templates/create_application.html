@@ -3,60 +3,82 @@
 {% block title %}Создание заявки{% endblock %}
 
 {% block content %}
-<h1>Создание заявок</h1>
-<div class="auth-page">
-    <div class="auth-oval">
-        <h1 class="auth-title">Создание заявки</h1>
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold mb-2">Создание заявки</h1>
+    </div>
 
-        {% if form.errors %}
-        <div class="auth-error">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <span>Ошибка, проверьте введенные данные</span>
-        </div>
-        {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; padding: 35px;">
 
-        <form method="post" action="">
-            {% csrf_token %}
-
-            <!-- 1. Вывод доступных сеансов -->
-            <div class="auth-field">
-                <label class="form-label"><strong>{{ form.id_con_event.label }}</strong></label>
-
-                <div class="slots-grid-fixed" style="margin-top: 10px; margin-bottom: 20px;">
-                    {{ form.id_con_event }}
+                {% if form.errors %}
+                <div style="background: rgba(255, 74, 46, 0.1); border: 1px solid #FF4A2E; padding: 12px 20px; border-radius: 30px; margin-bottom: 25px; text-align: center;">
+                    <span style="color: #FF4A2E; font-weight: 500;">Ошибка! Проверьте введенные данные</span>
                 </div>
-
-                {% if form.id_con_event.errors %}
-                    <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em; margin-bottom: 15px;">
-                        Пожалуйста, выберите один из сеансов!
-                    </span>
                 {% endif %}
+
+                <form method="post" action="">
+                    {% csrf_token %}
+
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;">
+                            {{ form.id_con_event.label }}
+                        </label>
+                        <div style="margin-top: 10px;">
+                            {{ form.id_con_event }}
+                        </div>
+                        {% if form.id_con_event.errors %}
+                            <span style="color: #FF4A2E; font-size: 0.8rem; display: block; margin-top: 5px;">
+                                Пожалуйста, выберите один из сеансов!
+                            </span>
+                        {% endif %}
+                    </div>
+
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;">
+                            {{ form.quantity_sit.label }}
+                        </label>
+                        <input type="number" name="{{ form.quantity_sit.name }}" id="{{ form.quantity_sit.id_for_label }}"
+                               class="form-control" style="border-radius: 30px; border: 1px solid #796666; padding: 12px 20px; width: 100%;"
+                               min="1" value="{{ form.quantity_sit.value|default:1 }}" required>
+                        {% if form.quantity_sit.errors %}
+                            <span style="color: #FF4A2E; font-size: 0.8rem; display: block; margin-top: 5px;">
+                                {{ form.quantity_sit.errors|striptags }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;">
+                            {{ form.id_pay.label }}
+                        </label>
+                        <select name="{{ form.id_pay.name }}" id="{{ form.id_pay.id_for_label }}"
+                                class="form-select"
+                                style="border-radius: 30px; border: 1px solid #796666; padding: 12px 20px; width: 100%;">
+                            {% for choice in form.id_pay.field.choices %}
+                            <option value="{{ choice.0 }}" {% if form.id_pay.value|stringformat:"s" == choice.0|stringformat:"s" %}selected{% endif %}>
+                                {{ choice.1 }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        {% if form.id_pay.errors %}
+                        <span style="color: #FF4A2E; font-size: 0.8rem; display: block; margin-top: 5px;">
+                            {{ form.id_pay.errors|striptags }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+
+                    <button type="submit" class="auth-btn" style="width: 100%; padding: 14px; font-size: 1rem;">
+                        Создать заявку
+                    </button>
+                </form>
             </div>
-
-            <!-- 2. Количество участников -->
-            <div class="auth-field" style="margin-bottom: 15px;">
-    {{ form.quantity_sit.label_tag }}
-    {{ form.quantity_sit }}
-    {% if form.quantity_sit.errors %}
-        <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em;">
-            {{ form.quantity_sit.errors|striptags }}
-        </span>
-    {% endif %}
-</div>
-
-            <!-- 3. Способ оплаты -->
-            <div class="auth-field" style="margin-bottom: 25px;">
-                {{ form.id_pay.label_tag }}
-                {{ form.id_pay }}
-                {% if form.id_pay.errors %}
-                    <span class="auth-error-text" style="color: red; display: block; font-size: 0.9em;">
-                        {{ form.id_pay.errors|striptags }}
-                    </span>
-                {% endif %}
-            </div>
-
-            <button type="submit" class="auth-btn">Создать заявку</button>
-        </form>
+        </div>
     </div>
 </div>
 {% endblock %}
