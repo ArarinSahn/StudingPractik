@@ -1,0 +1,12 @@
+[run]
+source = myapp
+omit =
+    */migrations/*
+    */templates/*
+    */views.py
+    */admin.py
+    */apps.py
+
+[html]
+directory = htmlcov
+title = Отчёт о покрытии кода ВкусLab

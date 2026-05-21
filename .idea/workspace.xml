@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe2eaec8-a8bc-4b7f-a36f-37e08778d7e2" name="Changes" comment="Обновление функционала, ситаются места, выводятся мероприятия в виде чекбокса и правильное время">
+    <list default="true" id="fe2eaec8-a8bc-4b7f-a36f-37e08778d7e2" name="Changes" comment="Готовый функционал">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base_personal_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_personal_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_sample.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_sample.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_application.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_application.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,25 +50,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.views.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/1/PycharmProjects/StudingPractik/static/images&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.z_c134d258c825ceb8_forms_py.html.executor": "Run",
+    "JavaScript Debug.z_c134d258c825ceb8_models_py.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.views.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/1/PycharmProjects/StudingPractik/static/images",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\1\PycharmProjects\StudingPractik\static\images" />
@@ -82,6 +79,24 @@
       <recent name="C:\Users\1\PycharmProjects\StudingPractik\myapp" />
       <recent name="C:\Users\1\PycharmProjects\StudingPractik\static" />
     </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudingPractik/htmlcov/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="z_c134d258c825ceb8_forms_py.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudingPractik/htmlcov/z_c134d258c825ceb8_forms_py.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="z_c134d258c825ceb8_models_py.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/StudingPractik/htmlcov/z_c134d258c825ceb8_models_py.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.z_c134d258c825ceb8_forms_py.html" />
+        <item itemvalue="JavaScript Debug.z_c134d258c825ceb8_models_py.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -107,7 +122,8 @@
       <workItem from="1779084395763" duration="9924000" />
       <workItem from="1779094504938" duration="96000" />
       <workItem from="1779213411106" duration="9485000" />
-      <workItem from="1779260775370" duration="4148000" />
+      <workItem from="1779260775370" duration="5864000" />
+      <workItem from="1779362150105" duration="2952000" />
     </task>
     <task id="LOCAL-00001" summary="Подключение БД к проекту, его создание">
       <option name="closed" value="true" />
@@ -181,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779094583140</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Готовый функционал">
+      <option name="closed" value="true" />
+      <created>1779268468757</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779268468757</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +221,8 @@
     <MESSAGE value="Оно заработало" />
     <MESSAGE value="Отзывы работают" />
     <MESSAGE value="Обновление функционала, ситаются места, выводятся мероприятия в виде чекбокса и правильное время" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновление функционала, ситаются места, выводятся мероприятия в виде чекбокса и правильное время" />
+    <MESSAGE value="Готовый функционал" />
+    <option name="LAST_COMMIT_MESSAGE" value="Готовый функционал" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/StudingPractik$views.coverage" NAME="views Coverage Results" MODIFIED="1778235788597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myapp" />

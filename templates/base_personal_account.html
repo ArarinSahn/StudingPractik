@@ -16,7 +16,7 @@
 
 
     <div class="custom-card d-flex justify-content-between align-items-center mb-4"
-         style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; padding: 12px 20px;">
+         style="box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);background: white; border: 1px solid #cbb5a8; border-radius: 30px; padding: 12px 20px;">
         <span><strong>Всего заявок:</strong> {{ applications.count }}</span>
         <span class="text-muted small">Статус обновляется администратором</span>
     </div>
@@ -26,7 +26,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {% for item in applications %}
         <div class="col">
-            <div style="background: white; border: 1px solid #cbb5a8; border-radius: 30px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);background: white; border: 1px solid #cbb5a8; border-radius: 30px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
 
 
                 <div style="position: relative;">
